@@ -23,8 +23,8 @@
 # usage:
 #	c2z [-i | -l | filename]
 #
-# You can use this script in your .zshrc or .zlogin files to load your
-# regular csh environment into zsh; for example, in .zlogin:
+# You can use this script in your zshrc or zlogin files to load your
+# regular csh environment into zsh; for example, in zlogin:
 #
 #	. =(c2z -l)
 #

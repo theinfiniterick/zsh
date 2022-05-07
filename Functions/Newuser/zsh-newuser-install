@@ -1,5 +1,5 @@
 # Function to install startup files for a new user.
-# Currently it only creates or edits .zshrc.
+# Currently it only creates or edits zshrc.
 #
 # It can be run again by giving it the option "-f".
 
@@ -28,12 +28,12 @@ if ! ( clear >/dev/null 2>/dev/null ); then
   fi
 fi
 
-# The directory in which to look for and save .zshrc.
+# The directory in which to look for and save zshrc.
 local zd=${ZDOTDIR:-$HOME}
 # The same directory in a user friendly form, i.e. with ~ replacement.
 # (We don't want to use glob_subst since that has other side effects.)
 local zdmsg
-# The message used if an other blank .zshrc is created.
+# The message used if an other blank zshrc is created.
 local msg="# Created by newuser for $ZSH_VERSION"
 # The lines marking the start and end of the section edited.
 local startline="# Lines configured by $myname"
@@ -118,8 +118,8 @@ fi
 if [[ $1 != -f ]]; then
   # The zsh/newuser module already tests for the following, so this test only
   # triggers if zsh-newuser-install is run by hand.
-  if [[ -e $zd/.zshenv || -e $zd/.zprofile || \
-        -e $zd/.zshrc || -e $zd/.zlogin ]]; then
+  if [[ -e $zd/zshenv || -e $zd/zprofile || \
+        -e $zd/zshrc || -e $zd/zlogin ]]; then
     print -r "$myname:  startup files exist, aborting.
 
 Use the argument -f if you want to force the function to be run again." >&2
@@ -137,7 +137,7 @@ fi
 # All internal functions start with __zni_.  These will be removed
 # when the main function exits.
 
-# Read existing lines from .zshrc, if any.
+# Read existing lines from zshrc, if any.
 __zni_retrieve_lines() {
   local line
 
@@ -145,13 +145,13 @@ __zni_retrieve_lines() {
 
   lines_found=0
 
-  [[ -f $zd/.zshrc ]] || return 1
+  [[ -f $zd/zshrc ]] || return 1
 
-  grep "$startline" $zd/.zshrc 1>/dev/null 2>&1 || return 1
+  grep "$startline" $zd/zshrc 1>/dev/null 2>&1 || return 1
 
   lines_found=1
 
-  sed -n "/^[	]*$startline/,/^[	]*$endline/p" $zd/.zshrc |
+  sed -n "/^[	]*$startline/,/^[	]*$endline/p" $zd/zshrc |
   while read -r line; do
     reply+=($line)
   done
@@ -674,7 +674,7 @@ __zni_submenu() {
 }
 
 
-# Save all values that have been edited to .zshrc.
+# Save all values that have been edited to zshrc.
 __zni_save() {
   local key optline newline
   local -a on_opts off_opts lines lines2
@@ -770,16 +770,16 @@ ${(F)unparsed}
 # End of lines moved by $myname." >>$tmpfile
   fi
 
-  if grep "$startline"  $zd/.zshrc 1>/dev/null 2>&1; then
+  if grep "$startline"  $zd/zshrc 1>/dev/null 2>&1; then
     # Found the start line; replace the section.
     # We could this by reading the lines in zsh, but in case
-    # the .zshrc is huge it's perhaps better to use sed.
+    # the zshrc is huge it's perhaps better to use sed.
     sed -e "/^[		]*$endline/r $tmpfile
-/^[	]*$startline/,/^[	]*$endline/d" $zd/.zshrc >${tmpfile}.repl &&
-    cp ${tmpfile}.repl $zd/.zshrc
+/^[	]*$startline/,/^[	]*$endline/d" $zd/zshrc >${tmpfile}.repl &&
+    cp ${tmpfile}.repl $zd/zshrc
   else
     # No current start marker; just append.
-    cat $tmpfile >>$zd/.zshrc
+    cat $tmpfile >>$zd/zshrc
   fi
 }
 
@@ -885,7 +885,7 @@ __zni_completion_save() {
     # We don't try to replace existing lines of completion configuration ---
     # that's up to compinstall.  We should already have tested that
     # there was no existing completion set up.
-    print -rl $completion_lines >>$zd/.zshrc
+    print -rl $completion_lines >>$zd/zshrc
   fi
 }
 
@@ -926,7 +926,7 @@ if [[ $state_parameters[HISTORY] = saved ]]; then
   install_state[history]="Saved"
 fi
 autoload -Uz compinstall
-zstyle :compinstall filename $zd/.zshrc
+zstyle :compinstall filename $zd/zshrc
 if compinstall -d; then
   install_state[completion]="Saved"
 fi
@@ -938,23 +938,23 @@ if [[ $1 != -f ]]; then
   print -r "This is the Z Shell configuration function for new users,
 $myname.
 You are seeing this message because you have no zsh startup files
-(the files .zshenv, .zprofile, .zshrc, .zlogin in the directory
+(the files zshenv, zprofile, zshrc, zlogin in the directory
 $zdmsg).  This function can help you with a few settings that should
 make your use of the shell easier.
 
 You can:
 
 (q)  Quit and do nothing.  The function will be run again next time."
-  if [[ ! -f $zd/.zshrc ]]; then
+  if [[ ! -f $zd/zshrc ]]; then
     print -r "
-(0)  Exit, creating the file $zdmsg/.zshrc containing just a comment.
+(0)  Exit, creating the file $zdmsg/zshrc containing just a comment.
      That will prevent this function being run again."
   fi
   print -r "
 (1)  Continue to the main menu.
 "
   if [[ -f /etc/zsh/newuser.zshrc.recommended ]]; then
-    print -r "(2)  Populate your $zdmsg/.zshrc with the configuration recommended
+    print -r "(2)  Populate your $zdmsg/zshrc with the configuration recommended
      by the system administrator and exit (you will need to edit
      the file by hand, if so desired).
 "
@@ -969,7 +969,7 @@ You can:
     ;;
 
     (0)
-    print -r $msg >$zd/.zshrc
+    print -r $msg >$zd/zshrc
     return 0
     ;;
 
@@ -977,8 +977,8 @@ You can:
     ;;
 
     (2)
-    cp /etc/zsh/newuser.zshrc.recommended $zd/.zshrc
-    source $zd/.zshrc
+    cp /etc/zsh/newuser.zshrc.recommended $zd/zshrc
+    source $zd/zshrc
     return 0
     ;;
 
@@ -987,7 +987,7 @@ You can:
     if [[ $1 != -f ]]; then
       print "\
 The function will be run again next time.  To prevent this, execute:
-  touch $zdmsg/.zshrc"
+  touch $zdmsg/zshrc"
     fi
     return 1
     ;;
@@ -1026,10 +1026,10 @@ ${install_state[options]:+  ($install_state[options].)}
   print -nr "(0)  Exit, "
   if (( save )); then
     print -r "saving the new settings.  They will take effect immediately."
-  elif [[ -f $zd/.zshrc ]]; then
-    print -r "leaving the existing $zdmsg/.zshrc alone."
+  elif [[ -f $zd/zshrc ]]; then
+    print -r "leaving the existing $zdmsg/zshrc alone."
   else
-    print -r "creating a blank $zdmsg/.zshrc file."
+    print -r "creating a blank $zdmsg/zshrc file."
   fi
   print -r "
 (a)  Abort all settings and start from scratch.  Note this will overwrite
@@ -1066,16 +1066,16 @@ ${install_state[options]:+  ($install_state[options].)}
     (0)
     clear
     if (( save )); then
-      if [[ -f $zd/.zshrc ]]; then
-	cp $zd/.zshrc $zd/.zshrc.zni &&
-	print -r "Copied old '$zdmsg/.zshrc' to '$zdmsg/.zshrc.zni'.
+      if [[ -f $zd/zshrc ]]; then
+	cp $zd/zshrc $zd/zshrc.zni &&
+	print -r "Copied old '$zdmsg/zshrc' to '$zdmsg/zshrc.zni'.
 "
       fi
 
       __zni_save
       __zni_completion_save
-    elif [[ ! -f $zd/.zshrc ]]; then
-      print -r $msg >$zd/.zshrc
+    elif [[ ! -f $zd/zshrc ]]; then
+      print -r $msg >$zd/zshrc
     fi
     if [[ $1 != -f ]]; then
       print -r "The function will not be run in future, but you can run
@@ -1083,7 +1083,7 @@ it yourself as follows:
   autoload -Uz $myname
   $myname -f
 
-The code added to $zdmsg/.zshrc is marked by the lines
+The code added to $zdmsg/zshrc is marked by the lines
 $startline
 $endline
 You should not edit anything between these lines if you intend to

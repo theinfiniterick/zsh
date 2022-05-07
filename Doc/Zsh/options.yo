@@ -275,7 +275,7 @@ pindex(NOAUTOREMOVESLASH)
 cindex(slash, removing trailing)
 item(tt(AUTO_REMOVE_SLASH) <D>)(
 When the last character resulting from a completion is a slash and the next
-character typed is a word delimiter, a slash, or a character that ends 
+character typed is a word delimiter, a slash, or a character that ends
 a command (such as a semicolon or an ampersand), remove the slash.
 )
 pindex(BASH_AUTO_LIST)
@@ -1128,7 +1128,7 @@ item(tt(GLOBAL_RCS) (tt(-d)) <D>)(
 If this option is unset, the startup files tt(zprofile()),
 tt(zshrc()), tt(zlogin()) and tt(zlogout()) will not be run.  It
 can be disabled and re-enabled at any time, including inside local startup
-files (tt(.zshrc), etc.).
+files (tt(zshrc), etc.).
 )
 pindex(RCS)
 pindex(NO_RCS)
@@ -1136,8 +1136,8 @@ pindex(NORCS)
 cindex(startup files, sourcing)
 item(tt(RCS) (tt(PLUS()f)) <D>)(
 After tt(zshenv()) is sourced on startup, source the
-tt(.zshenv), tt(zprofile()), tt(.zprofile),
-tt(zshrc()), tt(.zshrc), tt(zlogin()), tt(.zlogin), and tt(.zlogout)
+tt(zshenv), tt(zprofile()), tt(zprofile),
+tt(zshrc()), tt(zshrc), tt(zlogin()), tt(zlogin), and tt(zlogout)
 files, as described in noderef(Files).
 If this option is unset, the tt(zshenv()) file is still sourced, but any
 of the others will not be; it can be set at any time to prevent the
@@ -1974,7 +1974,7 @@ pindex(CONTINUEONERROR)
 pindex(NOCONTINUEONERROR)
 cindex(error, option to continue script on)
 item(tt(CONTINUE_ON_ERROR))(
-If a fatal error is encountered (see 
+If a fatal error is encountered (see
 ifnzman(noderef(Errors))\
 ifzman(the section ERRORS in zmanref(zshmisc))), and the code is running
 in a script, the shell will resume execution at the next statement
@@ -1993,7 +1993,7 @@ cindex(history style, csh)
 item(tt(CSH_JUNKIE_HISTORY) <C>)(
 A history reference without an event specifier will always refer to the
 previous command.  Without this option, such a history reference refers
-to the same event as the previous history reference on the current 
+to the same event as the previous history reference on the current
 command line, defaulting to the previous command.
 )
 pindex(CSH_JUNKIE_LOOPS)
@@ -2029,8 +2029,8 @@ vindex(READNULLCMD, ignoring)
 cindex(redirections with no command, csh)
 cindex(csh, redirections with no command)
 item(tt(CSH_NULLCMD) <C>)(
-Do not use the values of tt(NULLCMD) and tt(READNULLCMD) 
-when running redirections with no command.  This make 
+Do not use the values of tt(NULLCMD) and tt(READNULLCMD)
+when running redirections with no command.  This make
 such redirections fail (see noderef(Redirection)).
 )
 pindex(KSH_ARRAYS)
@@ -2309,7 +2309,7 @@ cindex(ksh, redirections with no command)
 cindex(redirections with no command, sh)
 cindex(redirections with no command, ksh)
 item(tt(SH_NULLCMD) <K> <S>)(
-Do not use the values of tt(NULLCMD) and tt(READNULLCMD) 
+Do not use the values of tt(NULLCMD) and tt(READNULLCMD)
 when doing redirections, use `tt(:)' instead (see noderef(Redirection)).
 )
 pindex(SH_OPTION_LETTERS)
@@ -2334,7 +2334,7 @@ cindex(sh, field splitting style)
 item(tt(SH_WORD_SPLIT) (tt(-y)) <K> <S>)(
 Causes field splitting to be performed on unquoted parameter expansions.
 Note that this option has nothing to do with word splitting.
-(See 
+(See
 ifzman(zmanref(zshexpn))\
 ifnzman(noderef(Parameter Expansion)).)
 )

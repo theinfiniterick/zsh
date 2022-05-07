@@ -149,7 +149,7 @@ Use prompt -h <theme> for help on specific themes.'
        done
        print -P "%b%f%k"
        ;;
-    s) print "Set and save not yet implemented.  Please ensure your ~/.zshrc"
+    s) print "Set and save not yet implemented.  Please ensure your ~/.config/zsh/zshrc"
        print "contains something similar to the following:\n"
        print "  autoload -Uz promptinit"
        print "  promptinit"

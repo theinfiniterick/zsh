@@ -256,7 +256,7 @@ sect(What is it good at?)
     it() execution of unbound commands,
     it() menu completion in two flavours,
     it() variable, editing function and option name completion,
-    it() inline expansion of variables and history commands.  
+    it() inline expansion of variables and history commands.
   )
   it() Globbing --- extremely powerful, including:
   itemization(
@@ -372,10 +372,10 @@ sect(I don't have root access: how do I make zsh my login shell?)
   you still have your original login shell waiting for when you exit.)
 
   The basic idea is to use mytt(exec <zsh-path>) to replace the current
-  shell with zsh.  Often you can do this in a login file such as .profile 
+  shell with zsh.  Often you can do this in a login file such as .profile
   (if your shell is sh or ksh) or .login (if it's csh).  Make sure you
   have some way of altering the file (e.g. via FTP) before you try this as
-  mytt(exec) is often rather unforgiving. 
+  mytt(exec) is often rather unforgiving.
 
   If you have zsh in a subdirectory mytt(bin) of your home directory,
   put this in .profile:
@@ -418,10 +418,10 @@ sect(I don't have root access: how do I make zsh my login shell?)
   zsh).
 
   If you like your login shell to appear in the process list as mytt(-zsh),
-  you can link mytt(zsh) to mytt(-zsh) (e.g. by mytt(ln -s ~/bin/zsh 
+  you can link mytt(zsh) to mytt(-zsh) (e.g. by mytt(ln -s ~/bin/zsh
   ~/bin/-zsh)) and change the exec to mytt(exec -zsh).  (Make sure
   mytt(-zsh) is in your path.) This has the same effect as the mytt(-l)
-  option. 
+  option.
 
   Footnote: if you DO have root access, make sure zsh goes in
   /etc/shells on all appropriate machines, including NIS clients, or you
@@ -496,7 +496,7 @@ tt(RM_STAR_SILENT),
   that most of the items are fairly minor.  Those marked `*' perform
   in a ksh-like manner if the shell is invoked with the name `ksh', or
   if `emulate ksh' is in effect.  Capitalised words with underlines
-  refer to shell options. 
+  refer to shell options.
 
   itemization(
   it() Syntax:
@@ -551,12 +551,12 @@ tt(EXTENDED_GLOB).
       [1] See question link(3.27)(327) for more on the mysteries of
         mytt(~) and mytt(^).
     it()  Unquoted assignments do file expansion after mytt(:)s (intended for
-        PATHs). 
+        PATHs).
     it()* mytt(typeset) and mytt(integer) have special behaviour for
         assignments in ksh, but not in zsh.  For example, this doesn't
         work in zsh:
   verb(
-          integer k=$(wc -l ~/.zshrc)
+          integer k=$(wc -l ~/.config/zsh/zshrc)
       )
         because the return value from tt(wc) includes leading
         whitespace which causes wordsplitting.  Ksh handles the
@@ -564,7 +564,7 @@ tt(EXTENDED_GLOB).
   )
   it() Command execution:
   itemization(
-    it()* There is no tt($ENV) variable (use tt(/etc/zshrc), tt(~/.zshrc); 
+    it()* There is no tt($ENV) variable (use tt(/etc/zshrc), tt(~/.config/zsh/zshrc);
         note also tt($ZDOTDIR)).
     it()* tt($PATH) is not searched for commands specified
         at invocation without -c.
@@ -620,7 +620,7 @@ link(2.3)(23).
   it() Built-in commands:
   itemization(
     it()  Some built-ins (tt(r), tt(autoload), tt(history), tt(integer) ...)
-        were aliases in ksh. 
+        were aliases in ksh.
     it()  There is no built-in command newgrp: use e.g. mytt(alias
         newgrp="exec newgrp")
     it()  mytt(jobs) has no mytt(-n) flag.
@@ -656,7 +656,7 @@ sect(Similarities with csh)
       work like csh: it expects a command in the parentheses.  Also
       mytt(for), mytt(which).
   it()  tt($PROMPT) as well as tt($PS1), tt($status) as well as tt($?),
-      tt($#argv) as well as tt($#), .... 
+      tt($#argv) as well as tt($#), ....
   it()  Escape sequences via tt(%) for prompts.
   it()  Special array variables tt($PATH) etc. are colon-separated, tt($path)
       are arrays.
@@ -722,7 +722,7 @@ label(23)
      alias lf "ls -F" ==> lf == ls -C -F)) then you must either:
   itemization(
         it() convert all of them to zsh functions; or
-        it() after converting, be sure your .zshrc defines all of your
+        it() after converting, be sure your zshrc defines all of your
            aliases before it defines any of your functions.
          )
 
@@ -895,7 +895,7 @@ sect(Shouldn't zsh be more/less like ksh/(t)csh?)
   the arguments for having what is close to a plug-in replacement for ksh
   are, if anything, even more powerful:  the deficiencies of csh as a
   programming language are well known (look in any Usenet FAQ archive, e.g.
-    url(http://www.cis.ohio-state.edu/hypertext/faq/usenet/unix-faq/\ 
+    url(http://www.cis.ohio-state.edu/hypertext/faq/usenet/unix-faq/\
         shell/csh-whynot/faq.html)
 (http://www.cis.ohio-state.edu/hypertext/faq/usenet/unix-faq/shell/csh-whynot/faq.html)
   if you are in any doubt) and zsh is able to run many standard
@@ -1031,8 +1031,8 @@ label(31)
 sect(In which startup file do I put...?)
 
   When zsh starts up, there are four files you can change which it will
-  run under various circumstances: tt(.zshenv), tt(.zprofile), tt(.zshrc)
-  and tt(.zlogin).  They are usually in your home directory, but the
+  run under various circumstances: tt(zshenv), tt(zprofile), tt(zshrc)
+  and tt(zlogin).  They are usually in your home directory, but the
   variable tt($ZDOTDIR) may be set to alter that.  Here are a few simple
   hints about how to use them.  There are also files which the system
   administrator can set for all shells; you can avoid running all except
@@ -1041,17 +1041,17 @@ sect(In which startup file do I put...?)
   is as brief as possible.
 
   The order in which the four files are searched (none of them
-  myem(need) to exist) is the one just given.  However, tt(.zprofile)
-  and tt(.zlogin) are only run when the shell is a login shell --- when
+  myem(need) to exist) is the one just given.  However, tt(zprofile)
+  and tt(zlogin) are only run when the shell is a login shell --- when
   you first login, of course, and whenever you start zsh with the tt(-l)
   option.  The order is the only difference between those; you should
-  decide whether you need things set before or after tt(.zshrc).  These
+  decide whether you need things set before or after tt(zshrc).  These
   files are a good place to set environment variables (i.e. mytt(export)
   commands), since they are passed on to all shells without you having
   to set them again, and also to check that your terminal is set up
   properly (except that if you want to change settings for terminal
   emulator windows like tt(xterm) you will need to put those in
-  tt(.zshrc), since usually you do not get a login shell here).
+  tt(zshrc), since usually you do not get a login shell here).
 
   Login shells are often interactive, but this is not necessarily the
   case.  It is the programme that starts the shell that decides if it is
@@ -1062,27 +1062,27 @@ sect(In which startup file do I put...?)
   terminal, so it is not interactive.
 
   The only file you can alter which is started with every zsh (unless
-  you use the tt(-f) option) is tt(.zshenv), so this is a good place to \
+  you use the tt(-f) option) is tt(zshenv), so this is a good place to \
   put
   things you want even if the shell is non-interactive: options for
   changing the syntax, like tt(EXTENDED_GLOB), any changes to set with
   mytt(limit), any more variables you want to make sure are set as for
   example tt($fpath) to find functions.  You almost certainly do not
-  want tt(.zshenv) to produce any output.  Some people prefer not to
-  use tt(.zshenv) for setting options, as this affects scripts; but
+  want tt(zshenv) to produce any output.  Some people prefer not to
+  use tt(zshenv) for setting options, as this affects scripts; but
   making zsh scripts portable usually requires special handling anyway.
 
-  Finally, tt(.zshrc) is run for every interactive shell; that includes
+  Finally, tt(zshrc) is run for every interactive shell; that includes
   login shells, but also any other time you start up a shell, such as
   simply by typing mytt(zsh) or opening a new terminal emulator window.
   This file is the place to change the editing behaviour via options or
   mytt(bindkey), control how your history is saved, set aliases unless
   you want to use them in scripts too, and for any other clutter which
   can't be exported but you only use when interacting directly with the
-  shell.  You probably don't want tt(.zshrc) to produce output, either,
+  shell.  You probably don't want tt(zshrc) to produce output, either,
   since there are occasions when this can be a problem, such as when
   using mytt(rsh) from another host.  See link(3.21)(321) for what to \
-  put in tt(.zshrc)
+  put in tt(zshrc)
   to save your history.
 
 
@@ -1148,10 +1148,10 @@ label(35)
   extra editing commands.
 
   As stated in the manual, zsh needs to be told about the Meta key by
-  using mytt(bindkey -me) or mytt(bindkey -mv) in your .zshrc or on the
+  using mytt(bindkey -me) or mytt(bindkey -mv) in your zshrc or on the
   command line.  You probably also need to tell the terminal driver to
   allow the `Meta' bit of the character through; mytt(stty pass8) is the
-  usual incantation.  Sample .zshrc entry:
+  usual incantation.  Sample zshrc entry:
   verb(
     [[ $TERM = "xterm" ]] && stty pass8 && bindkey -me
   )
@@ -1160,7 +1160,7 @@ label(35)
     [[ $TERM = "xterm" ]] && stty -parenb -istrip cs8 && bindkey -me
   )
   (disable parity detection, don't strip high bit, use 8-bit characters).
-  Make sure this comes myem(before) any bindkey entries in your .zshrc which
+  Make sure this comes myem(before) any bindkey entries in your zshrc which
   redefine keys normally defined in the emacs/vi keymap.  You may also
   need to set the tt(eightBitOutput) resource in your tt(~/.Xdefaults)
   file, although this is on by default and it's unlikely anybody will
@@ -1181,7 +1181,7 @@ sect(How do I automatically display the directory in my xterm title bar?)
   the directory changes.  The following checks that standard output is
   a terminal, then puts the directory in the title bar if the terminal
   is an tt(xterm) or some close relative, or a tt(sun-cmd).
-  
+
   verb(
   chpwd() {
     [[ -t 1 ]] || return
@@ -1199,7 +1199,7 @@ sect(How do I automatically display the directory in my xterm title bar?)
   producing the current directory; you can of course use mytt($PWD) here,
   but that won't use the mytt(~) notation which I find clearer.)  Note that
   when the tt(xterm) starts up you will probably want to call tt(chpwd)
-  directly: just put mytt(chpwd) in tt(.zshrc) after it is defined or \
+  directly: just put mytt(chpwd) in tt(zshrc) after it is defined or \
   autoloaded.
 
 
@@ -1221,7 +1221,7 @@ sect(Why do the cursor (arrow) keys not work?  (And other terminal oddities.))
 
   The cursor keys send different codes depending on the terminal; zsh
   only binds the most well known versions.  If you see these problems,
-  try putting the following in your tt(.zshrc):
+  try putting the following in your tt(zshrc):
 
   verb(
     bindkey "$(echotc kl)" backward-char
@@ -1262,7 +1262,7 @@ sect(Why do the cursor (arrow) keys not work?  (And other terminal oddities.))
     bindkey '\eOD'  backward-char
   )
   For most even vaguely VT100-compatible terminals, the above eight
-  instructions are a fairly safe bet for your tt(.zshrc).  Of course
+  instructions are a fairly safe bet for your tt(zshrc).  Of course
   you can substitute variant functions for the second argument here too.
 
   It should be noted that the mytt(O) / mytt([) confusion can occur
@@ -1343,7 +1343,7 @@ sect(Why does zsh not work in an Emacs shell mode any more?)
   verb(
     [[ $EMACS = t ]] && unsetopt zle
   )
-  in your .zshrc should be sufficient.
+  in your zshrc should be sufficient.
 
   Another method is to put
   verb(
@@ -1370,7 +1370,7 @@ sect(Why do my autoloaded functions not autoload [the first time]?)
      This is the traditional zsh method.  The advantage is that the
      file is called exactly like a script, so can double as both.
      To define a function mytt(xhead () { print -n "\033]2;$*\a"; }),
-     the file would just contain mytt(print -n "\033]2;$*\a").  
+     the file would just contain mytt(print -n "\033]2;$*\a").
   myeit() The file contains the entire definition, and maybe even
      other code:  it is run when the function needs to be loaded, then
      the function itself is called up.  This is the method in ksh.
@@ -1397,9 +1397,9 @@ sect(Why do my autoloaded functions not autoload [the first time]?)
   and whitespace, it will use the function defined in the file;
   otherwise, it will assume the old behaviour.  The option is set
   if mytt(emulate ksh) is in effect, of course.
-  
+
   (A neat trick to autoload all functions in a given directory is to
-  include a line like mytt(autoload ~/fns/*(:t)) in .zshrc; the bit in
+  include a line like mytt(autoload ~/fns/*(:t)) in zshrc; the bit in
   parentheses removes the directory part of the filenames, leaving
   just the function names.)
 
@@ -1459,7 +1459,7 @@ label(313)
   If you have the bad taste to set the option cshjunkiequotes, which
   inhibits such behaviour, you will have to bracket this with
   mytt(unsetopt cshjunkiequotes) and mytt(setopt cshjunkiequotes), or put it
-  in your tt(.zshrc) before the option is set.
+  in your tt(zshrc) before the option is set.
 
   In recent versions of zsh (not 3.0), there is a form of quoting which
   interprets print sequences like `tt(\n)' but otherwise acts like single
@@ -1492,7 +1492,7 @@ sect(Why can't I bind tt(\C-s) and tt(\C-q) any more?)
 
   There is an option tt(NO_FLOW_CONTROL) to stop zsh from allowing flow
   control and hence restoring the use of the keys: put mytt(setopt
-  noflowcontrol) in your tt(.zshrc) file.
+  noflowcontrol) in your tt(zshrc) file.
 
 
 sect(How do I execute command mytt(foo) within function mytt(foo)?)
@@ -1660,7 +1660,7 @@ sect(How do I prevent the prompt overwriting output when there is no newline?)
   this problem for most terminals).  An example of the overwriting is:
   verb(
     % echo -n foo
-    % 
+    %
   )
   This shows a case where the word tt(foo) was output without a newline, and
   then overwritten by the prompt line tt(%).  The reason this happens is that
@@ -1668,7 +1668,7 @@ sect(How do I prevent the prompt overwriting output when there is no newline?)
   return before the prompt in order to ensure that the line editor knows what
   column it is in (this is needed to position the right-side prompt correctly
   (mytt($RPROMPT), mytt($RPS1)) and to avoid screen corruption when performing
-  line editing).  If you add tt(unsetopt promptcr) to your tt(.zshrc), you
+  line editing).  If you add tt(unsetopt promptcr) to your tt(zshrc), you
   will see any partial output, but your screen may look weird until you press
   return or refresh the screen.
 
@@ -1867,7 +1867,7 @@ label(327)
   equivalent to mytt(^(pat1^(pat2))). where now you can see exactly what
   each mytt(^) takes as its argument.  I'll leave it as an exercise for
   you to work out what this does and doesn't match.
-  
+
   mytt(~) is always used between two patterns --- never right at the
   beginning or right at the end.  Note that the other special meaning of
   mytt(~), at the start of a filename to refer to your home directory or
@@ -1920,7 +1920,7 @@ label(327)
 
   You may like to know that from zsh 5.0.3 you can disable any pattern
   character separately.  So if you find mytt(^) gets in your way and
-  you're happy using mytt(~), put mytt(disable -p "^") in tt(~/.zshrc).
+  you're happy using mytt(~), put mytt(disable -p "^") in tt(~/.config/zsh/zshrc).
   You still need to turn on tt(EXTENDED_GLOB); the tt(disable) command
   only deactivates things that would otherwise be active, you can't
   specially enable something not allowed by the syntax options in effect.
@@ -1957,11 +1957,11 @@ label(328)
   before execution by using the tt(edit-command-line) ZLE widget.  For example,
   after putting
   verb(
-    autoload -U edit-command-line; 
-    zle -N edit-command-line; 
+    autoload -U edit-command-line;
+    zle -N edit-command-line;
     bindkey '^Fc' edit-command-line;
   )
-  in your tt(~/.zshrc), typing mytt(^F c) will open the entered-so-far
+  in your tt(~/.config/zsh/zshrc), typing mytt(^F c) will open the entered-so-far
   command-line for editing.  The command will not be automatically executed;
   quitting the editor will only return to zsh's command-line editing mode.
 
@@ -2063,7 +2063,7 @@ sect(What is completion?)
   called tt(_cd) to handle completion for the tt(cd) command) and is
   installed automatically with the shell, so all you need to do, in
   principal, is to arrange for this to be loaded.  Putting `tt(autoload -U
-  compinit; compinit)' in your tt(.zshrc) should be enough if the system is
+  compinit; compinit)' in your tt(zshrc) should be enough if the system is
   installed properly.
 
 
@@ -2147,7 +2147,7 @@ sect(How do I complete in the middle of words / just what's before the cursor?)
   usual function bound to tab, but it ignores anything on the right of the
   cursor.  If you always want this behaviour (some other shells do this),
   bind it to tab; otherwise put another binding, e.g. mytt(^X TAB) in
-  tt(~/.zshrc):
+  tt(~/.config/zsh/zshrc):
   verb(
     bindkey "^X^I" expand-or-complete-prefix
   )
@@ -2486,7 +2486,7 @@ label(52)
   Administrative matters are best sent to
   email(zsh-workers-owner@zsh.org).
   real name is email(Geoff Wing <gcw@zsh.org>).
-  
+
   An archive of mailings for the last few years can be found at
     url(http://www.zsh.org/mla/)(http://www.zsh.org/mla/)
   at the main zsh archive in Australia.

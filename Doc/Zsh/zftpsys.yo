@@ -50,7 +50,7 @@ appear as one of the elements of the tt($fpath) array (this should already
 be the case if they were installed), and at least the function tt(zfinit)
 should be autoloaded; it will autoload the rest.  Finally, to initialize
 the use of the system you need to call the tt(zfinit) function.  The
-following code in your tt(.zshrc) will arrange for this; assume the
+following code in your tt(zshrc) will arrange for this; assume the
 functions are stored in the directory tt(~/myfns):
 
 example(fpath=(~/myfns $fpath)
@@ -366,7 +366,7 @@ which case the basename of var(file1) will be added.  The sessions
 var(sess1) and var(sess2) must be distinct.
 
 The operation is performed using pipes, so it is required that the
-connections still be valid in a subshell, which is not the case under 
+connections still be valid in a subshell, which is not the case under
 versions of some operating systems, presumably due to a system bug.
 )
 enditem()
@@ -469,9 +469,9 @@ findex(zftp_chpwd, supplied version)
 item(tt(zftp_chpwd))(
 This function is called every time a connection is opened, or closed, or
 the remote directory changes.  This version alters the title bar of an
-tt(xterm)-compatible or tt(sun-cmd) terminal emulator to reflect the 
+tt(xterm)-compatible or tt(sun-cmd) terminal emulator to reflect the
 local and remote hostnames and current directories.  It works best when
-combined with the function tt(chpwd).  In particular, a function of 
+combined with the function tt(chpwd).  In particular, a function of
 the form
 
 example(chpwd+LPAR()RPAR() {

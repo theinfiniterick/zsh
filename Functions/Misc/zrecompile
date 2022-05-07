@@ -9,7 +9,7 @@
 # directories and wordcode files in $fpath are used.
 #
 # And then there are two options:
-#   -t: Only check if there are wordcode files that have to be 
+#   -t: Only check if there are wordcode files that have to be
 #       re-compiled. The return status is zero if there are files
 #       that need to be re-compiled and non-zero otherwise.
 #   -q: Be quiet, i.e.: only set the return status.
@@ -18,12 +18,12 @@
 #       separated by `--'. For example:
 #
 #         zrecompile -p \
-#                    -R ~/.zshrc -- \
+#                    -R ~/.config/zsh/zshrc -- \
 #                    -M ~/.zcompdump -- \
 #                    ~/zsh/comp.zwc ~/zsh/Completion/*/_* \
 #
-#       This makes ~/.zshrc be compiled into ~/.zshrc.zwc if that doesn't
-#       exist or if it is older than ~/.zshrc. The wordcode file will be
+#       This makes ~/zshrc be compiled into ~/.config/zsh/zshrc.zwc if that doesn't
+#       exist or if it is older than ~/zshrc. The wordcode file will be
 #       marked for reading instead of mapping. The same is done for
 #       ~/.zcompdump and ~/.zcompdump.zwc, but the wordcode file is marked
 #       for mapping. The last line re-creates the file ~/zsh/comp.zwc if
@@ -175,7 +175,7 @@ for zwc; do
 
   # Get the path prefix of the wordcode file to prepend it to names of
   # original files that are relative pathnames.
-  
+
   if [[ $zwc = */* ]]; then
     pre=${zwc%/*}/
   else

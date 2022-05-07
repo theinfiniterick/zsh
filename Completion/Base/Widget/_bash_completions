@@ -9,11 +9,11 @@
 # Esc @ -> machine names
 # Esc / -> file name
 # Esc ~ -> a user name
-# 
+#
 # C-x instead of Esc with one of the above will list matches and won't
 # attempt any completion.
 #
-# The following will bind the remaining set; simply put it in .zshrc
+# The following will bind the remaining set; simply put it in zshrc
 # after compinit is run.
 #
 # for key in '!' '$' '@' '/'; do

@@ -7,7 +7,7 @@
 # 1 means always quote
 # any other value means never quote
 #
-# To use this widget, put this in your startup files (eg, .zshrc)
+# To use this widget, put this in your startup files (eg, zshrc)
 #
 # autoload -Uz bracketed-paste-url-magic
 # zle -N bracketed-paste bracketed-paste-url-magic

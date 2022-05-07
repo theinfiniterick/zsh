@@ -1,7 +1,7 @@
 #
-# Example .zshrc file for zsh 4.0
+# Example zshrc file for zsh 4.0
 #
-# .zshrc is sourced in interactive shells.  It
+# zshrc is sourced in interactive shells.  It
 # should contain commands to set up aliases, functions,
 # options, key bindings, etc.
 #
@@ -130,7 +130,7 @@ zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 # allow one error for every three characters typed in approximate completer
 zstyle -e ':completion:*:approximate:*' max-errors \
     'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-    
+
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
 

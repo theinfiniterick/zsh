@@ -3,7 +3,7 @@
 # Figure out where to get the best help, and get it.
 #
 # Install this function by placing it in your FPATH and then
-# adding to your .zshrc the lines:
+# adding to your zshrc the lines:
 #	unalias run-help
 #	autoload -Uz run-help
 #

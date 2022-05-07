@@ -8,9 +8,9 @@
 #
 # Toggle verbose completions: zstyle ':completion:*:osc:*' verbose no
 #                             zstyle ':completion:*:osc-subcommand:*' verbose no
-# 
+#
 # Use the variables $ZSH_OSC_BUILD_TARGETS_EXTRA and $ZSH_OSC_PROJECTS_EXTRA to
-# extend the list of possible completions in your ~/.zshrc like that:
+# extend the list of possible completions in your ~/.config/zsh/zshrc like that:
 #  export OSC_PROJECTS_EXTRA="Base:System Base:shells"
 #
 # version 0.2
@@ -109,7 +109,7 @@ _osc_cmd_submitreq() {
 	cmdlist=($cmdlist "${hline[1]%,}:${hline[2,-1]}")
 
     done
-    
+
     _describe -t osc-commands 'osc command' cmdlist
 }
 
@@ -118,7 +118,7 @@ _osc_cmd_do() {
     local hline
     local -a cmdlist
     local tag=0
-    
+
     # only start completion if there's some '-' on the line
     if ! [ "$words[2]" = "-" ]; then
 	_complete

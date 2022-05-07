@@ -606,7 +606,7 @@ attributes unless either the existing or the newly-created parameter
 has the tt(-h) (hide) attribute.  This may have unexpected effects:
 there is no default value, so if there is no assignment at the
 point the variable is made local, it will be set to an empty value (or zero
-in the case of integers).  
+in the case of integers).
 The following:
 
 example(typeset PATH=/new/directory:$PATH)
@@ -1308,7 +1308,7 @@ Used for printing select lists and for the line editor.
 vindex(LISTMAX)
 item(tt(LISTMAX))(
 In the line editor, the number of matches to list without asking
-first. If the value is negative, the list will be shown if it spans at 
+first. If the value is negative, the list will be shown if it spans at
 most as many lines as given by the absolute value.
 If set to zero, the shell asks only if the top of the listing would scroll
 off the screen.
@@ -1784,7 +1784,7 @@ precedence over the tt(NOBEEP) option.
 )
 vindex(ZDOTDIR)
 item(tt(ZDOTDIR))(
-The directory to search for shell startup files (.zshrc, etc),
+The directory to search for shell startup files (zshrc, etc),
 if not tt($HOME).
 )
 vindex(zle_bracketed_paste)

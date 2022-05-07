@@ -1,4 +1,4 @@
-# Add `autoload promptnl' to your .zshrc, and include a call to promptnl
+# Add `autoload promptnl' to your zshrc, and include a call to promptnl
 # near the end of your precmd function.
 #
 # When promptnl runs, it asks the terminal to send back the current

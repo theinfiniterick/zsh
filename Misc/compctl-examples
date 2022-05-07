@@ -1,7 +1,7 @@
 #
 # This file gives examples of possible programmable completions (compctl).
-# You can either put the compctl commands in your .zshrc file, or put them
-# in a separate file (say .zcompctl) and source it from your .zshrc file.
+# You can either put the compctl commands in your zshrc file, or put them
+# in a separate file (say .zcompctl) and source it from your zshrc file.
 #
 # These are just examples. Use and modify to personal taste.  Copying
 # this file without thought will needlessly increase zsh's memory usage
@@ -544,9 +544,9 @@ compctl -k cvscmds \
     - "R[(r|)tag,;]" -/K cvstargets \
     - "R[up(|date),;]" -/K cvstargets \
     - "R[annotate,;]" -/K cvstargets \
-    -- cvs 
+    -- cvs
 
-compctl -/K cvstargets cvstest 
+compctl -/K cvstargets cvstest
 
 cvsprefix() {
     local nword args f
@@ -606,7 +606,7 @@ cvsaddp() {
     omit=( $reply ${pref}${^${=cvsignore}} )
     [[ -r ~/.cvsignore ]] && omit=( $omit ${pref}${^$(<~/.cvsignore)} )
     [[ -r ${pref}.cvsignore ]] && omit=( $omit ${pref}${^$(<${pref}.cvsignore)} )
-    eval 'reply=( ${all:#('${(j:|:)omit}')} )' 
+    eval 'reply=( ${all:#('${(j:|:)omit}')} )'
 }
 
 #------------------------------------------------------------------------------

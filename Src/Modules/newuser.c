@@ -87,10 +87,10 @@ boot_(UNUSED(Module m))
 	    return 0;
     }
 
-    if (check_dotfile(dotdir, ".zshenv") == 0 ||
-	check_dotfile(dotdir, ".zprofile") == 0 ||
-	check_dotfile(dotdir, ".zshrc") == 0 ||
-	check_dotfile(dotdir, ".zlogin") == 0)
+    if (check_dotfile(dotdir, "zshenv") == 0 ||
+	check_dotfile(dotdir, "zprofile") == 0 ||
+	check_dotfile(dotdir, "zshrc") == 0 ||
+	check_dotfile(dotdir, "zlogin") == 0)
 	return 0;
 
     for (sp = spaths; *sp; sp++) {

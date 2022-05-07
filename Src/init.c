@@ -1353,7 +1353,7 @@ run_init_scripts(void)
 		}
 	    }
 
-	    sourcehome(".zshenv");
+	    sourcehome("zshenv");
 	}
 	if (islogin) {
 #ifdef GLOBAL_ZPROFILE
@@ -1361,7 +1361,7 @@ run_init_scripts(void)
 		    source(GLOBAL_ZPROFILE);
 #endif
 	    if (isset(RCS) && unset(PRIVILEGED))
-		sourcehome(".zprofile");
+		sourcehome("zprofile");
 	}
 	if (interact) {
 #ifdef GLOBAL_ZSHRC
@@ -1369,7 +1369,7 @@ run_init_scripts(void)
 		source(GLOBAL_ZSHRC);
 #endif
 	    if (isset(RCS) && unset(PRIVILEGED))
-		sourcehome(".zshrc");
+		sourcehome("zshrc");
 	}
 	if (islogin) {
 #ifdef GLOBAL_ZLOGIN
@@ -1377,7 +1377,7 @@ run_init_scripts(void)
 		source(GLOBAL_ZLOGIN);
 #endif
 	    if (isset(RCS) && unset(PRIVILEGED))
-		sourcehome(".zlogin");
+		sourcehome("zlogin");
 	}
     }
     noerrexit = 0;

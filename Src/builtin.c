@@ -5844,7 +5844,7 @@ zexit(int val, enum zexit_t from_where)
 	    if (!zgetenv("ZDOTDIR") || strlen(zgetenv("ZDOTDIR")) == 0) {
 	        setdotdir();
 		}
-        sourcehome(".zlogout");
+        sourcehome("zlogout");
 #ifdef GLOBAL_ZLOGOUT
 	    if (isset(RCS) && isset(GLOBALRCS))
 		source(GLOBAL_ZLOGOUT);

@@ -73,7 +73,7 @@
 	* Etc/NEWS: Note minor new features and configuration changes.
 
 2000-02-27  Bart Schaefer  <schaefer@zsh.org>
-	
+
 	* Src/version.h: Version 3.0.8 (pre-release).
 
 	* Src/builtin.c: Fixes to `vared', particularly when run from a
@@ -398,7 +398,7 @@
         configure options.
 
 1999-07-24 23:26  Bart Schaefer <schaefer@zsh.org>
-	
+
 	* Etc/CONTRIBUTORS: Incorporate some bits from 3.1.6.
 
 	* Etc/NEWS: Update in preparation for 3.0.6 release.
@@ -867,7 +867,7 @@
 	Src/jobs.c, Src/lex.c, Src/params.c, Src/parse.c, Src/subst.c,
 	Src/utils.c, Src/watch.c, Src/zle_main.c, Src/zle_refresh.c,
 	Src/zle_tricky.c: Most of Wayne Davison's big compiler warning
-	elimination patch, from the URL he posted in zsh-workers 6072. 
+	elimination patch, from the URL he posted in zsh-workers 6072.
 	Some lines that got wider than 80 columns have been reformatted,
 	and the braces around single-line macro calls are not included
 	(because I intend to fix the macros themselves if possible).
@@ -899,7 +899,7 @@
 
 	* Src/hist.c, Src/input.c, Src/zle_main.c, Src/zsh.h: Adapt PWS's
 	zleread()/typeahead patch from zsh-workers 5776 to 3.0.5.
-	
+
 1999-04-21 05:18  Bart Schaefer <schaefer@zsh.org>
 
 	* Doc/zshbuiltins.man, Doc/zsh.texi, Src/builtin.c,
@@ -1000,7 +1000,7 @@
 
 	* Src/hist.c, Src/input.c, Src/parse.c: PWS's patch from
 	zsh-workers 4172 to eliminate the `lastc' global and thereby clean
-	up some goofy history management and a couple of unexpected exits. 
+	up some goofy history management and a couple of unexpected exits.
 	This replaces the previous input.c patch for a specific case of
 	this problem.
 
@@ -4482,7 +4482,7 @@ Thu Jun 15 00:25:43 1995  Richard Coleman  <coleman@math.gatech.edu>
 	* Fix for redirection bug.  From Zefram (31).
 
 	* Merge setmoreflags and initterm into init_io.
-	  From P.Stephenson (64). 
+	  From P.Stephenson (64).
 
 	* Use _exit instead of exit when in subshell and
 	  CFLAG_EXEC.  From P.Stephenson (72).
@@ -4772,7 +4772,7 @@ Tue Jan 31 15:05:31 1995  Richard Coleman  <coleman@math.gatech.edu>
 
 Mon Jan 30 00:49:37 1995  Richard Coleman  <coleman@math.gatech.edu>
 
-	* changed GLOBAL_ZLOGOUT to be sourced after .zlogout
+	* changed GLOBAL_ZLOGOUT to be sourced after zlogout
 
 Sat Jan 28 04:22:04 1995  Richard Coleman  <coleman@math.gatech.edu>
 

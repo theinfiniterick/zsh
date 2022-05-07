@@ -22,20 +22,20 @@ type will not be read.  It is also possible for a file in tt($ZDOTDIR) to
 re-enable tt(GLOBAL_RCS). Both tt(RCS) and tt(GLOBAL_RCS) are set by
 default.
 
-Commands are then read from tt($ZDOTDIR/.zshenv).
+Commands are then read from tt($ZDOTDIR/zshenv).
 pindex(LOGIN, use of)
 cindex(zprofile)
 If the shell is a login shell, commands
-are read from tt(zprofile()) and then tt($ZDOTDIR/.zprofile).
+are read from tt(zprofile()) and then tt($ZDOTDIR/zprofile).
 cindex(zshrc)
 Then, if the shell is interactive,
-commands are read from tt(zshrc()) and then tt($ZDOTDIR/.zshrc).
+commands are read from tt(zshrc()) and then tt($ZDOTDIR/zshrc).
 cindex(zlogin)
 Finally, if the shell is a login shell, tt(zlogin()) and
-tt($ZDOTDIR/.zlogin) are read.
+tt($ZDOTDIR/zlogin) are read.
 
 cindex(zlogout)
-When a login shell exits, the files tt($ZDOTDIR/.zlogout) and then
+When a login shell exits, the files tt($ZDOTDIR/zlogout) and then
 tt(zlogout()) are read.  This happens with either an explicit exit
 via the tt(exit) or tt(logout) commands, or an implicit exit by reading
 end-of-file from the terminal.  However, if the shell terminates due

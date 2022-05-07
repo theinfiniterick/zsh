@@ -268,8 +268,8 @@ AUTOMATIC NEW USER CONFIGURATION
 
 In the default configuration, the shell comes with a system based around
 the zsh/newuser add-on module that detects when a user first starts the
-shell interactively and has no initialisation files (.zshenv, .zshrc,
-.zprofile or .zlogin).  The shell then executes code in the file
+shell interactively and has no initialisation files (zshenv, zshrc,
+zprofile or zlogin).  The shell then executes code in the file
 scripts/newuser in the shared library area (by default
 /usr/local/share/zsh/<VERSION>/scripts/newuser).  This feature can be
 turned off simply by removing or renaming this script.  This is the

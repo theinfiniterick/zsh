@@ -49,7 +49,7 @@ while getopts "do" opt; do
 done
 
 #
-# Check the user's .zshrc, if any.
+# Check the user's zshrc, if any.
 #
 # This relies on the stuff we find being only minimally edited from
 # the stuff we originally saved.  A better way of doing this would
@@ -69,7 +69,7 @@ if zstyle -s :compinstall filename ifile &&
   __ci_test_ifile $ifile; then
   foundold=true
 else
-  ifile=${ZDOTDIR:-~}/.zshrc
+  ifile=${ZDOTDIR:-~}/zshrc
   if __ci_test_ifile ${ZDOTDIR:-~}/.compinstall; then
     ifile=${ZDOTDIR:-~}/.compinstall
     foundold=true
@@ -204,7 +204,7 @@ ${match[3]}"
 fi
 
 #
-# Print warnings about what we found in .zshrc.
+# Print warnings about what we found in zshrc.
 #
 
 if [[ -n $warn_old ]]; then
@@ -235,7 +235,7 @@ elif (( ! $lines_found )); then
       ifile=$HOME/.compinstall
     else
       print "appended to the file $ifile.  It is up to you to ensure
-that these lines are actually executed.  They will not be if your .zshrc
+that these lines are actually executed.  They will not be if your zshrc
 usually returns before the end."
     fi
   fi
@@ -1396,7 +1396,7 @@ q.   Return without saving.
       1) print "\
 Zsh can produce coloured completion listings where different file types
 etc. appear in different colours.  If you want to tailor that to your
-own needs, you will have to edit ~/.zshrc.  Here you have the choice of:
+own needs, you will have to edit ~/.config/zsh/zshrc.  Here you have the choice of:
 
 1.  Using the default colours.
 2.  Using the colours already set up for GNU ls via the \$LS_COLORS
@@ -1508,7 +1508,7 @@ You can make completion lists scroll when they don't fit on the screen.
 Note this is different from scrolling in menu selection --- a more basic
 pager is used which should work even with fairly stupid terminals.
 
-To enable this, edit a prompt to show when scrolling is active; an empty 
+To enable this, edit a prompt to show when scrolling is active; an empty
 string turns this feature off.  It can contain \`%l' to show the number of
 matches as \`current_number/total_number', \`%p' to show the fraction of
 the way down the list, or font-control sequences such as %B, %U, %S and the
@@ -1640,7 +1640,7 @@ __ci_do_file_styles() {
 
 4.  When expanding paths, \`foo//bar' is treated as \`foo/bar'.
 
-5.  Configure how multiple paths are expanded and displayed, 
+5.  Configure how multiple paths are expanded and displayed,
     e.g. /f/b -> /foo/bar
 
 6.  Keep certain prefixes unchanged, such as \`//resource/'.
@@ -1763,7 +1763,7 @@ one ([y]es, [n]o, [k]eep current setting)?
 	     suffon=
 	  fi
           print "
-When expanding /f/b, the shell will attempt to match /f*/b* (e.g. /foo/bar), 
+When expanding /f/b, the shell will attempt to match /f*/b* (e.g. /foo/bar),
 and so on to any depth.  If the first part of the expansion fails, by default
 the shell will not expand the remainder.  However, you can force it always
 to expand the first part.  Currently this feature is ${${prefon:+on}:-off}.
@@ -1970,11 +1970,11 @@ zf_ln -fn =(<<<'') ${tmpout}x || return 1
 __ci_output >>$tmpout
 
 if [[ -n $ifile ]]; then
-  if [[ $ifile != *(zshrc|zlogin|zshenv) ]]; then 
+  if [[ $ifile != *(zshrc|zlogin|zshenv) ]]; then
     print "\
 If you want this file to be run automatically, you should add
   . $ifile
-to your .zshrc.  compinstall will remember the name of this file for
+to your zshrc.  compinstall will remember the name of this file for
 future use."
     __ci_newline || return 1
   fi
@@ -1989,7 +1989,7 @@ future use."
   fi
   if { { grep "$endline" $ifile >/dev/null 2>&1 &&
          sed -e "/^[ 	]*$endline/r $tmpout
-/^[ 	]*$startline/,/^[ 	]*$endline/d" $ifile >>${tmpout}x } || 
+/^[ 	]*$startline/,/^[ 	]*$endline/d" $ifile >>${tmpout}x } ||
         { cp $ifile ${tmpout}x && cat $tmpout >>${tmpout}x } } &&
   cp ${tmpout}x $ifile && rm -f ${tmpout}x; then
     print "\nSuccessfully added compinstall lines to $ifile."

@@ -67,7 +67,7 @@ example(HELPDIR=~/zsh_help)
 
 findex(run-help, use of)
 To use the tt(run-help) function, you need to add lines something
-like the following to your tt(.zshrc) or equivalent startup file:
+like the following to your tt(zshrc) or equivalent startup file:
 
 example(unalias run-help
 autoload run-help)
@@ -123,13 +123,13 @@ If the tt(-p) option is given, the var(arg)s are interpreted as one
 or more sets of arguments for tt(zcompile), separated by `tt(-)tt(-)'.
 For example:
 
-example(zrecompile -p \ 
-           -R ~/.zshrc -- \ 
-           -M ~/.zcompdump -- \ 
+example(zrecompile -p \
+           -R ~/.config/zsh/zshrc -- \
+           -M ~/.zcompdump -- \
            ~/zsh/comp.zwc ~/zsh/Completion/*/_*)
 
-This compiles tt(~/.zshrc) into tt(~/.zshrc.zwc) if that doesn't exist or
-if it is older than tt(~/.zshrc). The compiled file will be marked for
+This compiles tt(~/.config/zsh/zshrc) into tt(~/.config/zsh/zshrc.zwc) if that doesn't exist or
+if it is older than tt(~/.config/zsh/zshrc). The compiled file will be marked for
 reading instead of mapping. The same is done for tt(~/.zcompdump) and
 tt(~/.zcompdump.zwc), but this compiled file is marked for mapping. The
 last line re-creates the file tt(~/zsh/comp.zwc) if any of the files
@@ -194,7 +194,7 @@ tt(.zkbd) within either your tt(HOME) or tt(ZDOTDIR) directory.  The name
 of the file is composed from the tt(TERM), tt(VENDOR) and tt(OSTYPE)
 parameters, joined by hyphens.
 
-You may read this file into your tt(.zshrc) or another startup file with
+You may read this file into your tt(zshrc) or another startup file with
 the `tt(source)' or `tt(.)' commands, then reference the tt(key) parameter
 in bindkey commands, like this:
 
@@ -529,7 +529,7 @@ are shown first.  The special value tt(+) can appear in the list to
 indicate the default file should be read at that point.  This allows
 effects like the following:
 
-example(zstyle ':chpwd:*' recent-dirs-file \ 
+example(zstyle ':chpwd:*' recent-dirs-file \
 ~/.chpwd-recent-dirs-${TTY##*/} +)
 
 Recent directories are read from a file numbered according to
@@ -890,9 +890,9 @@ subsect(Quickstart)
 To get this feature working quickly (including colors), you can do the
 following (assuming, you loaded tt(vcs_info) properly - see above):
 
-example(zstyle ':vcs_info:*' actionformats \ 
+example(zstyle ':vcs_info:*' actionformats \
     '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats       \ 
+zstyle ':vcs_info:*' formats       \
     '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 precmd () { vcs_info }
@@ -1417,7 +1417,7 @@ to know which patches of a series are not yet applied, you need to activate
 the tt(get-unapplied) style in the appropriate context.
 
 tt(vcs_info) allows for very detailed control over how the gathered
-information is presented (see 
+information is presented (see
 ifzman(the bf(Configuration) and bf(Hooks in vcs_info) sections)\
 ifnzman(noderef(vcs_info Configuration) and noderef(vcs_info Hooks))),
 all of which are documented below. Note there are a number of
@@ -1825,7 +1825,7 @@ example(zstyle ':vcs_info:bzr:*' use-simple true)
 If you do use tt(use-simple), please report if it does `the-right-thing[tm]'.
 
 Display the revision number in yellow for tt(bzr) and tt(svn):
-example(zstyle ':vcs_info:(svn|bzr):*' \ 
+example(zstyle ':vcs_info:(svn|bzr):*' \
        branchformat '%b%{'${fg[yellow]}'%}:%r')
 
 If you want colors, make sure you enclose the color codes in tt(%{)var(...)tt(%})
@@ -1928,7 +1928,7 @@ one of the elements of the tt(fpath) array (this should already be the
 case if they were installed), and at least the function tt(promptinit)
 should be autoloaded; it will autoload the rest.  Finally, to initialize
 the use of the system you need to call the tt(promptinit) function.  The
-following code in your tt(.zshrc) will arrange for this; assume the
+following code in your tt(zshrc) will arrange for this; assume the
 functions are stored in the directory tt(~/myfns):
 
 example(fpath=(~/myfns $fpath)
@@ -1938,7 +1938,7 @@ promptinit)
 subsect(Theme Selection)
 
 Use the tt(prompt) command to select your preferred theme.  This command
-may be added to your tt(.zshrc) following the call to tt(promptinit) in
+may be added to your tt(zshrc) following the call to tt(promptinit) in
 order to start zsh with a theme already selected.
 
 startitem()
@@ -2054,7 +2054,7 @@ These functions all implement user-defined ZLE widgets (see
 ifzman(zmanref(zshzle))\
 ifnzman(noderef(Zsh Line Editor))\
 ) which can be bound to keystrokes in interactive shells.  To use them,
-your tt(.zshrc) should contain lines of the form
+your tt(zshrc) should contain lines of the form
 
 example(autoload var(function)
 zle -N var(function))
@@ -2258,7 +2258,7 @@ Neither of the styles tt(word-chars) nor tt(word-class) is used in this case.
 Here are some examples of use of the tt(word-context) style to extend
 the context.
 
-example(zstyle ':zle:*' word-context \ 
+example(zstyle ':zle:*' word-context \
        "*/*" filename "[[:space:]]" whitespace
 zstyle ':zle:transpose-words:whitespace' word-style shell
 zstyle ':zle:transpose-words:filename' word-style normal
@@ -2368,7 +2368,7 @@ paste itself from proceeding.
 Loading tt(bracketed-paste-magic) defines tt(backward-extend-paste), a
 helper function for use in tt(paste-init).
 
-example(zstyle :bracketed-paste-magic paste-init \ 
+example(zstyle :bracketed-paste-magic paste-init \
        backward-extend-paste)
 
 When a paste would insert into the middle of a word or append text to a
@@ -2388,16 +2388,16 @@ the paste itself from proceeding.
 Loading tt(bracketed-paste-magic) also defines tt(quote-paste), a helper
 function for use in tt(paste-finish).
 
-example(zstyle :bracketed-paste-magic paste-finish \ 
+example(zstyle :bracketed-paste-magic paste-finish \
        quote-paste
-zstyle :bracketed-paste-magic:finish quote-style \ 
+zstyle :bracketed-paste-magic:finish quote-style \
        qqq)
 
 When the pasted text is inserted into tt(BUFFER), it is quoted per the
 tt(quote-style) value.  To forcibly turn off the built-in numeric prefix
 quoting of tt(bracketed-paste), use:
 
-example(zstyle :bracketed-paste-magic:finish quote-style \ 
+example(zstyle :bracketed-paste-magic:finish quote-style \
        none)
 )
 enditem()
@@ -2432,7 +2432,7 @@ function based completion system may know about multiple places in
 this string where characters are missing or differ from at least one
 of the possible matches.  It will then place the cursor on the
 position it considers to be the most interesting one, i.e. the one
-where one can disambiguate between as many matches as possible with as 
+where one can disambiguate between as many matches as possible with as
 little typing as possible.
 
 This widget allows the cursor to be easily moved to the other interesting
@@ -2495,9 +2495,9 @@ the history.
 Although you tt(autoload) only one function, the commands to use it are
 slightly different because it implements two widgets.
 
-example(zle -N history-beginning-search-backward-end \ 
+example(zle -N history-beginning-search-backward-end \
        history-search-end
-zle -N history-beginning-search-forward-end \ 
+zle -N history-beginning-search-forward-end \
        history-search-end
 bindkey '\e^P' history-beginning-search-backward-end
 bindkey '\e^N' history-beginning-search-forward-end)
@@ -2522,7 +2522,7 @@ in the text typed is treated as a wildcard and can match anything (hence
 a leading space is equivalent to giving a numeric argument).  Both
 forms can be combined, for example:
 
-example(zle -N history-beginning-search-menu-space-end \ 
+example(zle -N history-beginning-search-menu-space-end \
        history-beginning-search-menu)
 )
 tindex(history-pattern-search)
@@ -2844,7 +2844,7 @@ non-zero.
 
 Here is a trivial example of a widget using this feature.
 example(local state
-narrow-to-region -p $'Editing restricted region\n' \ 
+narrow-to-region -p $'Editing restricted region\n' \
   -P '' -S state
 zle recursive-edit
 narrow-to-region -R state)
@@ -3279,11 +3279,11 @@ and for these widgets.  For example, to use completion, approximation and
 correction for normal completion, completion and correction for
 incremental completion and only completion for prediction one could use:
 
-example(zstyle ':completion:*' completer \ 
+example(zstyle ':completion:*' completer \
         _complete _correct _approximate
-zstyle ':completion:incremental:*' completer \ 
+zstyle ':completion:incremental:*' completer \
         _complete _correct
-zstyle ':completion:predict:*' completer \ 
+zstyle ':completion:predict:*' completer \
         _complete)
 
 It is a good idea to restrict the completers used in prediction, because
@@ -3303,7 +3303,7 @@ been tried.  Values are:
 startitem()
 item(tt(complete))(
 The cursor is left where it was when completion finished, but only if
-it is after a character equal to the one just inserted by the user.  If 
+it is after a character equal to the one just inserted by the user.  If
 it is after another character, this value is the same as `tt(key)'.
 )
 item(tt(key))(
@@ -3312,7 +3312,7 @@ after the var(n)th occurrence of the character just inserted, where
 var(n) is the number of times that character appeared in the word
 before completion was attempted.  In short, this has the effect of
 leaving the cursor after the character just typed even if the
-completion code found out that no other characters need to be inserted 
+completion code found out that no other characters need to be inserted
 at that position.
 )
 enditem()
@@ -3323,7 +3323,7 @@ position where the completion code left it.
 kindex(list, widget style)
 item(tt(list))(
 When using the tt(incremental-complete-word) widget, this style says
-if the matches should be listed on every key press (if they fit on the 
+if the matches should be listed on every key press (if they fit on the
 screen).  Use the context prefix `tt(:completion:incremental)'.
 
 The tt(insert-and-predict) widget uses this style to decide if the
@@ -3389,7 +3389,7 @@ Like `tt(break-keys)', this uses the `tt(:incremental)' context.
 kindex(stop-keys, widget style)
 item(tt(stop-keys))(
 This style is used by the tt(incremental-complete-word) widget.  Its value
-is treated similarly to the one for the tt(break-keys) style (and uses 
+is treated similarly to the one for the tt(break-keys) style (and uses
 the same context: `tt(:incremental)').  However, in
 this case all keys matching the pattern given as its value will stop
 incremental completion and will then execute their usual function.
@@ -4158,15 +4158,15 @@ startup files, is inhibited.
 startitem()
 item(tt(zsh-newuser-install) [ tt(-f) ])(
 The function presents the user with various options for customizing
-their initialization scripts.  Currently only tt(~/.zshrc) is handled.
-tt($ZDOTDIR/.zshrc) is used instead if the parameter tt(ZDOTDIR) is
+their initialization scripts.  Currently only tt(~/.config/zsh/zshrc) is handled.
+tt($ZDOTDIR/zshrc) is used instead if the parameter tt(ZDOTDIR) is
 set; this provides a way for the user to configure a file without
-altering an existing tt(.zshrc).
+altering an existing tt(zshrc).
 
 By default the function exits immediately if it finds any of the files
-tt(.zshenv), tt(.zprofile), tt(.zshrc), or tt(.zlogin) in the appropriate
+tt(zshenv), tt(zprofile), tt(zshrc), or tt(zlogin) in the appropriate
 directory.  The option tt(-f) is required in order to force the function
-to continue.  Note this may happen even if tt(.zshrc) itself does not
+to continue.  Note this may happen even if tt(zshrc) itself does not
 exist.
 
 As currently configured, the function will exit immediately if the
@@ -4182,12 +4182,12 @@ file or not; changes are not irreversible until this point.  However,
 the script is careful to restrict changes to the file only to a group
 marked by the lines `tt(# Lines configured by zsh-newuser-install)' and
 `tt(# End of lines configured by zsh-newuser-install)'.  In addition,
-the old version of tt(.zshrc) is saved to a file with the suffix
+the old version of tt(zshrc) is saved to a file with the suffix
 tt(.zni) appended.
 
-If the function edits an existing tt(.zshrc), it is up to the user
+If the function edits an existing tt(zshrc), it is up to the user
 to ensure that the changes made will take effect.  For example, if
-control usually returns early from the existing tt(.zshrc) the lines
+control usually returns early from the existing tt(zshrc) the lines
 will not be executed; or a later initialization file may override
 options or parameters, and so on.  The function itself does not attempt to
 detect any such conflicts.
@@ -4376,7 +4376,7 @@ tt(openssl),
 tt(p4),
 tt(sudo),
 tt(svk),
-and 
+and
 tt(svn),
 commands.
 )
@@ -4621,8 +4621,8 @@ This makes defining styles a bit simpler by using a single `tt(+)' as a
 special token that allows you to append a context name to the previously
 used context name.  Like this:
 
-example(zstyle+ ':foo:bar' var(style1) var(value1) \ 
-      + ':baz'     var(style2) var(value2) \ 
+example(zstyle+ ':foo:bar' var(style1) var(value1) \
+      + ':baz'     var(style2) var(value2) \
       + ':frob'    var(style3) var(value3))
 
 This defines var(style1) with var(value1) for the context tt(:foo:bar) as usual,

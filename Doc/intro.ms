@@ -293,36 +293,36 @@ This checks for a certain user's files:
 .PP
 There are five startup files that \fBzsh\fP will read commands from:
 .Ds
-$ZDOTDIR/.zshenv
-$ZDOTDIR/.zprofile
-$ZDOTDIR/.zshrc
-$ZDOTDIR/.zlogin
-$ZDOTDIR/.zlogout
+$ZDOTDIR/zshenv
+$ZDOTDIR/zprofile
+$ZDOTDIR/zshrc
+$ZDOTDIR/zlogin
+$ZDOTDIR/zlogout
 .De
 If \fBZDOTDIR\fP is not set, then the value of \fBHOME\fP is used;
 this is the usual case.
 .\".KE    <--- missing .KS or .KF above
 .PP
-\&\fC.zshenv\fP is sourced on all invocations of the shell,
+\&\fCzshenv\fP is sourced on all invocations of the shell,
 unless the \fC-f\fP option is set.  It should contain commands to set
 the command search path, plus other important environment
 variables.
-\&\fC.zshenv\fP should not contain commands that produce output
+\&\fCzshenv\fP should not contain commands that produce output
 or assume the shell is attached to a tty.
 .PP
-\&\fC.zshrc\fP is sourced in interactive shells.  It should contain
+\&\fCzshrc\fP is sourced in interactive shells.  It should contain
 commands to set up aliases, functions, options, key bindings, etc.
 .PP
-\&\fC.zlogin\fP is sourced in login shells.  It should contain
+\&\fCzlogin\fP is sourced in login shells.  It should contain
 commands that should be executed only in login shells.
-\&\fC.zlogout\fP is sourced when login shells exit.
-\&\fC.zprofile\fP is similar to \fC.zlogin\fP, except that it is sourced before
-\&\fC.zshrc\fP.
-\&\fC.zprofile\fP is meant as an alternative to \fC.zlogin\fP for
+\&\fCzlogout\fP is sourced when login shells exit.
+\&\fCzprofile\fP is similar to \fCzlogin\fP, except that it is sourced before
+\&\fCzshrc\fP.
+\&\fCzprofile\fP is meant as an alternative to \fCzlogin\fP for
 ksh fans;
 the two are not intended to be used together, although this
 could certainly be done if desired.
-\&\fC.zlogin\fP is not the place for alias definitions, options, environment
+\&\fCzlogin\fP is not the place for alias definitions, options, environment
 variable settings, etc.;
 as a general rule, it should not change the shell environment
 at all.  Rather, it should be used to set the terminal type
@@ -479,12 +479,12 @@ Note that this could also have been implemented as an alias:
 -rwxr-xr-x\0\01\0pfalstad\0\0\0\0\0\0\029\0May\024\004:38\0foo
 .De
 .PP
-Instead of defining a lot of functions in your \fC.zshrc\fP,
+Instead of defining a lot of functions in your \fCzshrc\fP,
 all of which you may not use,
 it is often better to use the \fCautoload\fP builtin.
 The idea is, you create a directory where function
 definitions are stored, declare the names in
-your \fC.zshrc\fP, and tell the shell where to look for them.
+your \fCzshrc\fP, and tell the shell where to look for them.
 Whenever you reference a function, the shell
 will automatically load it into memory.
 .Ds
@@ -528,7 +528,7 @@ ypmatch\0$1\0passwd.byname
 sukthnkr:*:1267:35:Rahul\0Sukthankar:/u/sukthnkr:/usr/princeton/bin/tcsh
 .De
 Now other people, who may not use \fBzsh\fP, or who don't want to
-copy all of your \fC.zshrc\fP, may use these functions as shell
+copy all of your \fCzshrc\fP, may use these functions as shell
 scripts.
 .Sh "Directories"
 .PP
@@ -555,7 +555,7 @@ However, \fBzsh\fP is smarter than most other shells in this respect:
 ~foo/news/nntp>\0cd\0inews
 ~foo/news/nntp/inews>
 .De
-Note that \fBzsh\fP prints \fIother\fP users' directories 
+Note that \fBzsh\fP prints \fIother\fP users' directories
 in the form \fC~user\fP.  Also note that you can
 set a parameter and use it as a directory name;
 \fBzsh\fP will act as if \fCfoo\fP is a user
@@ -587,7 +587,7 @@ You can define a shell function for this purpose:
 ~spool>\0cd\0.msgs
 ~spool/.msgs>
 .De
-You may want to add this one-line function to your \fC.zshrc\fP.
+You may want to add this one-line function to your \fCzshrc\fP.
 
 \fBzsh\fP can also put the current directory in your title bar,
 if you are using a windowing system.
@@ -908,7 +908,7 @@ There is an important difference between the two.
 In the \fC<(\fR...\fC)\fR case, the shell creates a named pipe (FIFO)
 instead of a file.  This is better, since it does not
 fill up the file system; but it does not work in all cases.
-In fact, if we had replaced \fC=(\fR...\fC)\fR with \fC<(\fR...\fC)\fR in 
+In fact, if we had replaced \fC=(\fR...\fC)\fR with \fC<(\fR...\fC)\fR in
 the examples above, all of them would have stopped working
 except for \fCfgrep -f <(\fR...\fC)\fR.
 You can not edit a pipe, or open it as a mail folder;
@@ -1147,7 +1147,7 @@ in \fBzsh\fP), you may have to fix some of the aliases by hand.
 The \fCc2z\fP script checks your csh setup, and produces a list
 of \fBzsh\fP commands which replicate your aliases and parameter settings
 as closely as possible.  You could include its output in your
-startup file, \fC.zshrc\fP.
+startup file, \fCzshrc\fP.
 .Sh "History"
 .PP
 There are several ways to manipulate history in \fBzsh\fP.
@@ -1273,7 +1273,7 @@ your \fBEDITOR\fP or \fBVISUAL\fP environment variable is vi,
 \fBzsh\fP will use vi emulation by default.  You can then switch to
 emacs mode with \fCbindkey -e\fP.
 .PP
-In addition to basic editing, the shell allows you to 
+In addition to basic editing, the shell allows you to
 recall previous lines in the history.  In emacs mode,
 this is done with \fI^P\fP (control-P) or (on many terminals) with the
 cursor-up key:
@@ -2669,19 +2669,19 @@ Fri\0May\024\006:54:14\0EDT\01991
 overwriting an existing file.
 .Ds
 %\0setopt\0noclobber
-%\0cat\0/dev/null\0>~/.zshrc
-zsh:\0file\0exists:\0/u/pfalstad/.zshrc
+%\0cat\0/dev/null\0>~/.config/zsh/zshrc
+zsh:\0file\0exists:\0/u/pfalstad/.config/zsh/zshrc
 .De
 If you really do want to clobber a file, you can use the
 \fC>!\fP operator.
 To make things easier in this case, the \fC>\fP is stored in
 the history list as a \fC>!\fP:
 .Ds
-%\0cat\0/dev/null\0>!\0~/.zshrc
-%\0cat\0/etc/motd\0>\0~/.zshrc
-zsh:\0file\0exists:\0/u/pfalstad/.zshrc
+%\0cat\0/dev/null\0>!\0~/.config/zsh/zshrc
+%\0cat\0/etc/motd\0>\0~/.config/zsh/zshrc
+zsh:\0file\0exists:\0/u/pfalstad/.config/zsh/zshrc
 %\0!!
-cat\0/etc/motd\0>!\0~/.zshrc
+cat\0/etc/motd\0>!\0~/.config/zsh/zshrc
 %\0\fR...
 .De
 \fIRCQUOTES\fP lets you use a more elegant method for including

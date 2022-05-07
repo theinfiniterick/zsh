@@ -347,7 +347,7 @@ If var(start) is also given, show events starting from that time and date.
 The word tt(now) can be used to indicate the current time.
 
 To implement an alert when events are due, include tt(calendar -s) in your
-tt(~/.zshrc) file.
+tt(~/.config/zsh/zshrc) file.
 
 Options:
 
