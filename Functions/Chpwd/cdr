@@ -103,7 +103,7 @@
 #
 #   recent-dirs-file
 #     The file where the list of directories is saved.  The default
-#     is ${ZDOTDIR:-$HOME}/.chpwd-recent-dirs, i.e. this is in your
+#     is ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.chpwd-recent-dirs, i.e. this is in your
 #     home directory unless you have set ZDOTDIR to point somewhere else.
 #     Directory names are saved in $'...' quoted form, so each line
 #     in the file can be supplied directly to the shell as an argument.
@@ -207,10 +207,10 @@
 #   elif [[ $1 = c ]]; then
 #     if [[ $PREFIX = <-> || -z $PREFIX ]]; then
 #       typeset -a keys values
-#   
+#
 #       values=(${${(f)"$(cdr -l)"}/ ##/:})
 #       keys=(${values%%:*})
-#   
+#
 #       _describe -t dir-index 'recent directory index' \
 #         values keys -V unsorted -S']'
 #       return

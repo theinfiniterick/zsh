@@ -11,7 +11,7 @@ setopt extendedglob
 
 # Set ZFTP_BMFILE if not already set.  This should agree with
 # the corresponding line in zfgoto.
-: ${ZFTP_BMFILE:=${ZDOTDIR:-$HOME}/.zfbkmarks}
+: ${ZFTP_BMFILE:=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zfbkmarks}
 
 typeset -A bkmarks
 local line

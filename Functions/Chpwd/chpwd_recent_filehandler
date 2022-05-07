@@ -9,7 +9,7 @@ setopt extendedglob
 integer max
 local file line
 local -a files dir
-local default=${ZDOTDIR:-$HOME}/.chpwd-recent-dirs
+local default=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.chpwd-recent-dirs
 
 if zstyle -a ':chpwd:' recent-dirs-file files; then
   files=(${files//(#s)+(#e)/$default})

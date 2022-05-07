@@ -20,7 +20,7 @@
 #   1> 32                     # printed by function
 #   2> $1 + 2                 # typed by user
 #   34
-#   3> 
+#   3>
 # Here, 32 is stored as $1.  This works in the obvious way for any
 # number of arguments.
 #
@@ -68,7 +68,7 @@
 # of a given expression.  For example,
 #   1> [##16]  32 + 20 / 2
 #   2A
-#   2> 
+#   2>
 # prints the result of the calculation in hexadecimal.
 #
 # You can't change the default input base, but the shell allows any small
@@ -125,7 +125,7 @@ integer _max_stack _push
 local -a _expressions stack
 
 # We use our own history file with an automatic pop on exit.
-history -ap "${ZDOTDIR:-$HOME}/.zcalc_history"
+history -ap "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcalc_history"
 
 _forms=( '%2$g' '%.*g' '%.*f' '%.*E' '')
 
@@ -151,8 +151,8 @@ fi
 float PI E
 (( PI = 4 * atan(1), E = exp(1) ))
 
-if [[ -f "${ZDOTDIR:-$HOME}/.zcalcrc" ]]; then
-  . "${ZDOTDIR:-$HOME}/.zcalcrc" || return 1
+if [[ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcalcrc" ]]; then
+  . "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcalcrc" || return 1
 fi
 
 # Process command line

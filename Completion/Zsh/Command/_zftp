@@ -56,7 +56,7 @@ case $subcom in
             compadd - $(awk -F, 'NR > 2 { print $1 }' ~/.ncftp/bookmarks)
       fi
     else
-      if [[ -f ${ZFTP_BMFILE:=${ZDOTDIR:-$HOME}/.zfbkmarks} ]]; then
+      if [[ -f ${ZFTP_BMFILE:=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zfbkmarks} ]]; then
         _wanted bookmarks expl bookmark \
             compadd - $(awk '{print $1}' $ZFTP_BMFILE)
       fi

@@ -142,7 +142,7 @@ ___luarocks_installed_rocks_cache_policy(){
   # Decide which directory to retrieve cache from, and ensure it exists
   local cache_dir
   zstyle -s ":completion:${curcontext}:" cache-path cache_dir
-  : ${cache_dir:=${ZDOTDIR:-$HOME}/.zcompcache}
+  : ${cache_dir:=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompcache}
   if [[ ! -d "$cache_dir" ]]; then
     [[ -e "$cache_dir" ]] &&
       _message "cache-dir ($cache_dir) isn't a directory\!"

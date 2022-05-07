@@ -29,7 +29,7 @@ if ! ( clear >/dev/null 2>/dev/null ); then
 fi
 
 # The directory in which to look for and save zshrc.
-local zd=${ZDOTDIR:-$HOME}
+local zd=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}
 # The same directory in a user friendly form, i.e. with ~ replacement.
 # (We don't want to use glob_subst since that has other side effects.)
 local zdmsg

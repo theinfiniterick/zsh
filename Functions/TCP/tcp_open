@@ -32,7 +32,7 @@
 # -s sessname
 #         Open by session name or comma separated list; either may
 #         be repeated as many times as necessary.  The session must be
-#	  listed in the file ${ZDOTDIR:-$HOME}/.ztcp_sessions.  Lines in
+#	  listed in the file ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.ztcp_sessions.  Lines in
 #	  this file look exactly like a tcp_open command line except the
 #	  session name is at the start, for example
 #           sess1 pwspc 2811
@@ -100,7 +100,7 @@ done
 (( OPTIND > 1 )) && shift $(( OPTIND - 1 ))
 
 (( ${+tcp_by_fd} ))   || typeset -gA tcp_by_fd
-(( ${+tcp_by_name} )) || typeset -gA tcp_by_name 
+(( ${+tcp_by_name} )) || typeset -gA tcp_by_name
 typeset -A sessassoc
 
 if (( ${#sessnames} )); then
@@ -112,7 +112,7 @@ if (( ${#sessnames} )); then
     sessassoc[$sess]=
   done
 
-  sessfile=${ZDOTDIR:-$HOME}/.ztcp_sessions
+  sessfile=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.ztcp_sessions
   if [[ ! -r $sessfile ]]; then
     print "No session file: $sessfile" >&2
     return 1

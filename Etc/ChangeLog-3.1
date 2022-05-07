@@ -11011,7 +11011,7 @@
 	* pws: 6806: Completion/Core/compdump, Completion/Core/compinit,
 	  Completion/Core/compinstall, Doc/Zsh/compsys.yo: compdump is now
 	  a function which unfunctions itself; default dumpfile location
-	  is now ${ZDOTDIR:-$HOME}/.zcompdump
+	  is now ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompdump
 
 	* Sven: 6807: Src/Zle/complist.c: accept-and-menu-complete
 	  advances the menu-select selection too.
@@ -11418,7 +11418,7 @@
 
 	* pws: 6506: Completion/Core/compinit, Doc/Zsh/compsys.yo: if
 	  completion dumpfile is not writeable, use
-	  ${ZDOTDIR:-$HOME}/.zcompdump
+	  ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompdump
 
 	* Sven: 6502: Doc/Zsh/options.yo: document 6496
 

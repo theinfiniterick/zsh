@@ -8,7 +8,7 @@ _cache_ident="$1"
 if zstyle -t ":completion:${curcontext}:" use-cache; then
   # Decide which directory to cache to, and ensure it exists
   zstyle -s ":completion:${curcontext}:" cache-path _cache_dir
-  : ${_cache_dir:=${ZDOTDIR:-$HOME}/.zcompcache}
+  : ${_cache_dir:=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompcache}
   if [[ ! -d "$_cache_dir" ]]; then
     if [[ -e "$_cache_dir" ]]; then
       _message "cache-dir style points to a non-directory\!"
@@ -26,7 +26,7 @@ if zstyle -t ":completion:${curcontext}:" use-cache; then
   fi
   _cache_ident_dir="$_cache_dir/$_cache_ident"
   _cache_ident_dir="$_cache_ident_dir:h"
-  
+
   if [[ ! -d "$_cache_ident_dir" ]]; then
     if [[ -e "$_cache_ident_dir" ]]; then
       _message "cache ident dir points to a non-directory:$_cache_ident_dir"
@@ -40,7 +40,7 @@ if zstyle -t ":completion:${curcontext}:" use-cache; then
       fi
     fi
   fi
-  
+
 
   shift
   for var; do

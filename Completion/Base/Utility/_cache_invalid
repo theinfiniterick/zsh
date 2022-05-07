@@ -10,7 +10,7 @@ _cache_ident="$1"
 zstyle -t ":completion:${curcontext}:" use-cache || return 1
 
 zstyle -s ":completion:${curcontext}:" cache-path _cache_dir
-: ${_cache_dir:=${ZDOTDIR:-$HOME}/.zcompcache}
+: ${_cache_dir:=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompcache}
 _cache_path="$_cache_dir/$_cache_ident"
 
 # See whether the caching policy says that the cache needs rebuilding

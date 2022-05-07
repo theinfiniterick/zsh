@@ -122,7 +122,7 @@ if [[ -n $_i_dumpfile ]]; then
   # Explicitly supplied dumpfile.
   typeset -g _comp_dumpfile="$_i_dumpfile"
 else
-  typeset -g _comp_dumpfile="${ZDOTDIR:-$HOME}/.zcompdump"
+  typeset -g _comp_dumpfile="${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompdump"
 fi
 
 # The standard options set in completion functions.
@@ -197,14 +197,14 @@ comppostfuncs=()
 # none of the `-p' and `-k' options is given a function for a command is
 # defined. The arguments after the function name are then interpreted as
 # the names of the command for which the function generates matches.
-# With the `-p' option a function for a name pattern is defined. This 
-# function will be invoked when completing for a command whose name 
+# With the `-p' option a function for a name pattern is defined. This
+# function will be invoked when completing for a command whose name
 # matches the pattern given as argument after the function name (in this
 # case only one argument is accepted).
 # The option `-P' is like `-p', but the function will be called after
 # trying to find a function defined for the command on the line if no
 # such function could be found.
-# With the `-k' option a function for a special completion keys is 
+# With the `-k' option a function for a special completion keys is
 # defined and immediately bound to those keys. Here, the extra arguments
 # are the name of one of the builtin completion widgets and any number
 # of key specifications as accepted by the `bindkey' builtin.

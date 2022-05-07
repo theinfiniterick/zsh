@@ -52,7 +52,7 @@ if [[ ${#_patcomps} -eq 0 || -z ${_patcomps[(r)_zf*]} ]] &&
   compctl -K zfget_match zfget zfgcp zfuget zfcget
   compctl -k hosts zfanon zfopen zfparams
   compctl -s \
-    '$(awk '\''{print $1}'\'' ${ZFTP_BMFILE:-${ZDOTDIR:-$HOME}/.zfbkmarks})' \
+    '$(awk '\''{print $1}'\'' ${ZFTP_BMFILE:-${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zfbkmarks})' \
     -x 'W[1,-*n*]' \
     -s '$(awk -F, '\''NR > 2 { print $1 }'\'' ~/.ncftp/bookmarks)' -- \
     zfgoto zfmark

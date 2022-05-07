@@ -69,9 +69,9 @@ if zstyle -s :compinstall filename ifile &&
   __ci_test_ifile $ifile; then
   foundold=true
 else
-  ifile=${ZDOTDIR:-~}/zshrc
-  if __ci_test_ifile ${ZDOTDIR:-~}/.compinstall; then
-    ifile=${ZDOTDIR:-~}/.compinstall
+  ifile=${ZDOTDIR:-${XDG_CONFIG_HOME:-~/.config}/zsh}/zshrc
+  if __ci_test_ifile ${ZDOTDIR:-${XDG_CONFIG_HOME:-~/.config}/zsh}/.compinstall; then
+    ifile=${ZDOTDIR:-${XDG_CONFIG_HOME:-~/.config}/zsh}/.compinstall
     foundold=true
   elif __ci_test_ifile $ifile; then
     foundold=true
@@ -114,7 +114,7 @@ fi
 local newifile=$ifile
 if [[ $foundold = true ]]; then
   if [[ $newifile != [~/]* ]]; then
-    newifile=${ZDOTDIR:-~}/$newifile
+    newifile=${ZDOTDIR:-${XDG_CONFIG_HOME:-~/.config}/zsh}/$newifile
     print "[Existing completion definition file is not absolute path:
 updating to $newifile]"
   fi

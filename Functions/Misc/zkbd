@@ -11,7 +11,7 @@
 emulate -RL zsh
 local zkbd term key seq
 
-zkbd=${ZDOTDIR:-$HOME}/.zkbd
+zkbd=${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zkbd
 [[ -d $zkbd ]] || mkdir $zkbd || return 1
 
 trap 'unfunction getmbkey getseq; command rm -f $zkbd/$TERM.tmp' 0
@@ -140,7 +140,7 @@ EOF
     cat <<EOF
 
 If you want to use these extra keys with zsh, try adding the above command
-to your ${ZDOTDIR:-$HOME}/zshrc file.
+to your ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/zshrc file.
 
 See also "man stty" or the documentation for your terminal or emulator.
 EOF
@@ -156,7 +156,7 @@ by adding
 
     bindkey -m
 
-to your ${ZDOTDIR:-$HOME}/zshrc file.
+to your ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/zshrc file.
 
 EOF
 
@@ -259,7 +259,7 @@ cat <<EOF
 Parameter assignments for the keys you typed have been written to the file:
 $termFile
 
-You may read this file into ${ZDOTDIR:-$HOME}/zshrc or another startup
+You may read this file into ${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/zshrc or another startup
 file with the "source" or "." commands, then reference the \$key parameter
 in bindkey commands, for example like this:
 
