@@ -91,6 +91,11 @@ else
   zdmsg=$zd
 fi
 
+# If $zd does not exist then try to create it
+if [ ! -d "$zd" ]; then
+  mkdir -p "$zd"
+fi
+
 # Don't run if we can't write to $zd.
 # Assume this is a temporary condition and exit silently---
 # if this really is a new user this probably isn't the right
