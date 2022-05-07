@@ -1040,7 +1040,7 @@ cd_do_chdir(char *cnam, char *dest, int hard)
 	    if (!(*pp)[0] || ((*pp)[0] == '.' && (*pp)[1] == '\0'))
 		hasdot = 1;
     /*
-     * If 
+     * If
      * (- there is no . in cdpath
      *  - or cdpath is not being used)
      *  - and the POSIXCD option is not set
@@ -5841,7 +5841,10 @@ zexit(int val, enum zexit_t from_where)
 	    savehistfile(NULL, 1, writeflags);
 	}
 	if (islogin && !subsh) {
-	    sourcehome(".zlogout");
+	    if (!zgetenv("ZDOTDIR") || strlen(zgetenv("ZDOTDIR")) == 0) {
+	        setdotdir();
+		}
+        sourcehome(".zlogout");
 #ifdef GLOBAL_ZLOGOUT
 	    if (isset(RCS) && isset(GLOBALRCS))
 		source(GLOBAL_ZLOGOUT);

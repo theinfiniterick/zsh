@@ -51,7 +51,7 @@ size_t underscorelen;
 int underscoreused;
 
 /* what level of sourcing we are at */
- 
+
 /**/
 int sourcelevel;
 
@@ -66,12 +66,12 @@ mod_export int SHTTY;
 mod_export FILE *shout;
 
 /* termcap strings */
- 
+
 /**/
 mod_export char *tcstr[TC_COUNT];
 
 /* lengths of each termcap string */
- 
+
 /**/
 mod_export int tclen[TC_COUNT];
 
@@ -727,7 +727,7 @@ init_shout(void)
     if (shout)
 	setvbuf(shout, shoutbuf, _IOFBF, BUFSIZ);
 #endif
-  
+
     gettyinfo(&shttyinfo);	/* get tty state */
 #if defined(__sgi)
     if (shttyinfo.tio.c_cc[VSWTCH] <= 0)	/* hack for irises */
@@ -1008,7 +1008,7 @@ setupvals(char *cmd, char *runscript, char *zsh_name)
 # endif /* SITEFPATH_DIR */
 # if defined(ADDITIONAL_FPATH)
     /* Second: the directories from --enable-additional-fpath
-     * 
+     *
      * default: empty list */
     for (j = 0; j < more_fndirs_len; j++)
 	*fpathptr++ = ztrdup(more_fndirs[j]);
@@ -1282,6 +1282,27 @@ init_signals(void)
     }
 }
 
+/* Set the ZDOTDIR environment variable to a path that is *
+ * compliant with the XDG user directory specification    */
+
+/**/
+void
+setdotdir(void) {
+
+	char path[PATH_MAX];
+	char *ptr = zgetenv("XDG_CONFIG_HOME");
+
+	if (ptr != NULL) {
+		snprintf(path, sizeof(path), "%s/%s", ptr, "zsh");
+	} else {
+		ptr = zgetenv("HOME");
+		snprintf(path, sizeof(path), "%s/%s/%s", ptr, ".config", "zsh");
+	}
+
+	setenv("ZDOTDIR", path, 1);
+
+}
+
 /* Source the init scripts.  If called as "ksh" or "sh"  *
  * then we source the standard sh/ksh scripts instead of *
  * the standard zsh scripts                              */
@@ -1410,7 +1431,7 @@ source(char *s)
     struct funcstack fstack;
     enum source_return ret = SOURCE_OK;
 
-    if (!s || 
+    if (!s ||
 	(!(prog = try_source_file((us = unmeta(s)))) &&
 	 (tempfd = movefd(open(us, O_RDONLY | O_NOCTTY))) == -1)) {
 	return SOURCE_NOT_FOUND;
@@ -1710,6 +1731,10 @@ zsh_main(UNUSED(int argc), char **argv)
     setlocale(LC_ALL, "");
 #endif
 
+    if (!zgetenv("ZDOTDIR") || strlen(zgetenv("ZDOTDIR")) == 0) {
+        setdotdir();
+	}
+
     init_jobs(argv, environ);
 
     /*
@@ -1750,7 +1775,7 @@ zsh_main(UNUSED(int argc), char **argv)
 
     createoptiontable();
     /* sets emulation, LOGINSHELL, PRIVILEGED, ZLE, INTERACTIVE,
-     * SHINSTDIN and SINGLECOMMAND */ 
+     * SHINSTDIN and SINGLECOMMAND */
     parseargs(zsh_name, argv, &runscript, &cmd);
 
     SHTTY = -1;
